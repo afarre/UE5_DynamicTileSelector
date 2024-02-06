@@ -312,15 +312,15 @@ bool AMyController::RenderSaveMap() {
 			continue;
 		}
 
-		// Id the wall's material exists, look for it in the DynamicMaterialArray and set it 
-		if (FPaths::FileExists(ResourcesDir + SaveMapEntry.Value)) {
+		// If the wall's material exists, look for it in the DynamicMaterialArray and set it 
+		if (FPaths::FileExists(ResourcesDir + "/" + SaveMapEntry.Value)) {
 			for (FMyDynamicMat DynamicMat : DynamicMaterialArray) {
 				if (DynamicMat.CleanName == SaveMapEntry.Value) {
 					SaveMapEntry.Key->StaticMesh->SetMaterial(M_MAT_NUM, DynamicMat.DynamicMaterial);
 					break;
 				}
 			}
-		}else {
+		} else {
 			TPair<FString, FString> Pair;
 			Pair.Key = SaveMapEntry.Key->Tags[1].ToString();
 			Pair.Value = SaveMapEntry.Value;
